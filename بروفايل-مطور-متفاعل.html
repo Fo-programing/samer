@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بورتفوليو المبرمج</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#4A90E2',secondary:'#9B59B6'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+html {
+scroll-behavior: smooth;
+}
+body {
+font-family: 'Tajawal', sans-serif;
+}
+.gradient-bg {
+background: linear-gradient(135deg, #4A90E2 0%, #9B59B6 100%);
+}
+.text-gradient {
+background: linear-gradient(90deg, #4A90E2, #9B59B6);
+-webkit-background-clip: text;
+background-clip: text;
+color: transparent;
+}
+.project-card:hover .project-overlay {
+opacity: 1;
+}
+.timeline-dot::before {
+content: '';
+position: absolute;
+width: 2px;
+height: 100%;
+background-color: #e5e7eb;
+left: 50%;
+transform: translateX(-50%);
+z-index: -1;
+}
+.timeline-item:last-child .timeline-dot::before {
+height: 0;
+}
+.skill-progress {
+transform: rotate(-90deg);
+}
+.skill-progress circle {
+transition: stroke-dashoffset 1s ease-in-out;
+}
+.typing-effect::after {
+content: '|';
+animation: blink 1s infinite;
+}
+@keyframes blink {
+0%, 100% { opacity: 1; }
+50% { opacity: 0; }
+}
+input:focus, textarea:focus {
+outline: none;
+border-color: #4A90E2;
+}
+.animate-on-scroll {
+opacity: 0;
+transform: translateY(20px);
+transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.animate-on-scroll.visible {
+opacity: 1;
+transform: translateY(0);
+}
+.progress-circle {
+transition: stroke-dashoffset 1s ease-in-out;
+}
+</style>
+</head>
+<body class="bg-white">
+<!-- قائمة التنقل -->
+<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="navbar">
+<div class="container mx-auto px-6 py-4 flex justify-between items-center bg-white bg-opacity-90 backdrop-blur-sm rounded-b-lg shadow-sm">
+<div class="font-['Pacifico'] text-2xl text-primary">مبرمج</div>
+<nav class="hidden md:flex space-x-1 space-x-reverse">
+<a href="#home" class="px-4 py-2 text-gray-700 hover:text-primary transition-colors duration-300">الرئيسية</a>
+<a href="#about" class="px-4 py-2 text-gray-700 hover:text-primary transition-colors duration-300">ماذا عنا</a>
+<a href="#skills" class="px-4 py-2 text-gray-700 hover:text-primary transition-colors duration-300">المهارات</a>
+<a href="#projects" class="px-4 py-2 text-gray-700 hover:text-primary transition-colors duration-300">المشاريع</a>
+<a href="#experience" class="px-4 py-2 text-gray-700 hover:text-primary transition-colors duration-300">الخبرات</a>
+<a href="#contact" class="px-4 py-2 text-gray-700 hover:text-primary transition-colors duration-300">التواصل</a>
+</nav>
+<button class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700" id="menu-toggle">
+<i class="ri-menu-line ri-lg"></i>
+</button>
+</div>
+<!-- قائمة الموبايل -->
+<div class="md:hidden bg-white shadow-lg rounded-b-lg absolute w-full left-0 right-0 top-full transform -translate-y-full opacity-0 transition-all duration-300 pointer-events-none" id="mobile-menu">
+<div class="container mx-auto px-6 py-4 flex flex-col space-y-4">
+<a href="#home" class="px-4 py-2 text-gray-700 hover:text-primary transition-colors duration-300">الرئيسية</a>
+<a href="#about" class="px-4 py-2 text-gray-700 hover:text-primary transition-colors duration-300">ماذا عنا</a>
+<a href="#skills" class="px-4 py-2 text-gray-700 hover:text-primary transition-colors duration-300">المهارات</a>
+<a href="#projects" class="px-4 py-2 text-gray-700 hover:text-primary transition-colors duration-300">المشاريع</a>
+<a href="#experience" class="px-4 py-2 text-gray-700 hover:text-primary transition-colors duration-300">الخبرات</a>
+<a href="#contact" class="px-4 py-2 text-gray-700 hover:text-primary transition-colors duration-300">التواصل</a>
+</div>
+</div>
+</header>
+
+<!-- القسم الرئيسي (Hero Section) -->
+<section id="home" class="min-h-screen flex items-center relative overflow-hidden pt-20" style="background-image: url('https://readdy.ai/api/search-image?query=abstract%20digital%20background%20with%20solid%20blue%20color%2C%20modern%20tech%20pattern%2C%20subtle%20code%20elements%2C%20professional%20sleek%20design%20for%20developer%20portfolio%2C%20high%20quality%2C%20detailed%2C%20soft%20lighting&width=1920&height=1080&seq=hero1&orientation=landscape'); background-size: cover; background-position: center;">
+<div class="absolute inset-0 bg-primary/90"></div>
+<div class="container mx-auto px-6 py-12 relative z-10">
+<div class="flex flex-col md:flex-row items-center justify-between">
+<div class="md:w-1/2 text-center md:text-right mb-10 md:mb-0 animate-on-scroll">
+<h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">محمود محمد</h1>
+<h2 class="text-xl md:text-2xl text-white mb-6 typing-effect" id="typing-text">مطور ويب متكامل</h2>
+<p class="text-white/90 text-lg mb-8 max-w-lg mx-auto md:mr-0 md:ml-auto">مبرمج متخصص في تطوير تطبيقات الويب والموبايل بخبرة تزيد عن 5 سنوات في بناء حلول تقنية مبتكرة ومتطورة.</p>
+<div class="flex flex-wrap justify-center md:justify-end gap-4">
+<a href="#contact" class="bg-white text-primary px-6 py-3 rounded-button font-medium hover:bg-opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl whitespace-nowrap">تواصل معي</a>
+<a href="#projects" class="bg-transparent border-2 border-white text-white px-6 py-3 rounded-button font-medium hover:bg-white/10 transition-all duration-300 whitespace-nowrap">عرض الأعمال</a>
+</div>
+<div class="flex mt-8 justify-center md:justify-end space-x-4 space-x-reverse">
+<a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white hover:text-primary transition-all duration-300">
+<i class="ri-facebook-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white hover:text-primary transition-all duration-300">
+<i class="ri-tiktok-fill"></i>
+</a>
+<a href="tel:+201123961290" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white hover:text-primary transition-all duration-300">
+<i class="ri-phone-fill"></i>
+</a>
+</div>
+</div>
+<div class="md:w-1/2 flex justify-center animate-on-scroll" style="animation-delay: 0.3s;">
+<div class="relative">
+<div class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-3xl">
+<img src="photo_2025-06-16_00-57-23.jpg" alt="صورة المبرمج" class="w-full h-full object-cover object-top">
+</div>
+<div class="absolute -bottom-4 -right-4 bg-white text-primary rounded-full p-4 shadow-lg">
+<i class="ri-code-s-slash-line ri-2x"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- قسم ماذا عنا -->
+<section id="about" class="py-20 bg-white">
+<div class="container mx-auto px-6">
+<div class="flex flex-col lg:flex-row items-center">
+<div class="lg:w-1/2 mb-10 lg:mb-0 animate-on-scroll">
+<div class="relative">
+<div class="w-full h-80 rounded-xl overflow-hidden shadow-2xl">
+<img src="photo_2025-06-16_00-57-23.jpg" alt="عن المبرمج" class="w-full h-full object-cover">
+</div>
+<div class="absolute -bottom-6 -right-6 bg-primary text-white rounded-xl p-6 shadow-lg w-2/3">
+<h3 class="text-xl font-bold mb-2">5+ سنوات خبرة</h3>
+<p class="text-sm">في تطوير الويب وتصميم التطبيقات</p>
+</div>
+</div>
+</div>
+<div class="lg:w-1/2 lg:pr-12 animate-on-scroll" style="animation-delay: 0.3s;">
+<h2 class="text-3xl md:text-4xl font-bold mb-6">ماذا عنا</h2>
+<p class="text-gray-600 mb-6">أنا مبرمج ويب متخصص في تطوير تطبيقات الويب الحديثة باستخدام أحدث التقنيات والأطر العملية. لدي شغف كبير ببناء حلول تقنية مبتكرة تلبي احتياجات العملاء وتقدم تجربة مستخدم استثنائية.</p>
+<p class="text-gray-600 mb-8">خلال مسيرتي المهنية التي تمتد لأكثر من 5 سنوات، عملت على مجموعة متنوعة من المشاريع بدءاً من المواقع الشخصية الصغيرة وحتى الأنظمة الإدارية الكبيرة. أؤمن بالعمل الجاد والالتزام بتسليم مشاريع عالية الجودة في الوقت المحدد.</p>
+<div class="grid grid-cols-2 gap-6">
+<div class="bg-gray-50 p-6 rounded-lg">
+<div class="w-12 h-12 bg-primary/10 text-primary rounded-full flex items-center justify-center mb-4">
+<i class="ri-code-line ri-lg"></i>
+</div>
+<h3 class="text-lg font-bold mb-2">تطوير الويب</h3>
+<p class="text-gray-600 text-sm">بناء تطبيقات ويب متكاملة وسريعة وآمنة باستخدام أحدث التقنيات</p>
+</div>
+<div class="bg-gray-50 p-6 rounded-lg">
+<div class="w-12 h-12 bg-secondary/10 text-secondary rounded-full flex items-center justify-center mb-4">
+<i class="ri-smartphone-line ri-lg"></i>
+</div>
+<h3 class="text-lg font-bold mb-2">تطبيقات الموبايل</h3>
+<p class="text-gray-600 text-sm">تصميم وتطوير تطبيقات الهواتف الذكية لنظامي iOS و Android</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- قسم المهارات -->
+<section id="skills" class="py-20 bg-gray-50">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16 animate-on-scroll">
+<h2 class="text-3xl md:text-4xl font-bold mb-4">مهاراتي التقنية</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">مجموعة من المهارات والتقنيات التي أتقنها وأستخدمها في مشاريعي المختلفة</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="bg-white rounded-lg shadow-lg p-6 transform hover:-translate-y-2 transition-all duration-300 animate-on-scroll">
+<div class="flex items-start mb-4">
+<div class="w-12 h-12 flex items-center justify-center rounded-full bg-primary/10 text-primary mr-4">
+<i class="ri-html5-line ri-lg"></i>
+</div>
+<div>
+<h3 class="text-xl font-bold mb-1">تطوير الواجهة الأمامية</h3>
+<p class="text-gray-600 text-sm">HTML, CSS, JavaScript</p>
+</div>
+</div>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between mb-1">
+<span class="text-sm font-medium">HTML5 & CSS3</span>
+<span class="text-sm text-gray-500">95%</span>
+</div>
+<div class="w-full bg-gray-200 rounded-full h-2">
+<div class="bg-primary rounded-full h-2" style="width: 95%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<span class="text-sm font-medium">JavaScript</span>
+<span class="text-sm text-gray-500">90%</span>
+</div>
+<div class="w-full bg-gray-200 rounded-full h-2">
+<div class="bg-primary rounded-full h-2" style="width: 90%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<span class="text-sm font-medium">React</span>
+<span class="text-sm text-gray-500">85%</span>
+</div>
+<div class="w-full bg-gray-200 rounded-full h-2">
+<div class="bg-primary rounded-full h-2" style="width: 85%"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-lg p-6 transform hover:-translate-y-2 transition-all duration-300 animate-on-scroll" style="animation-delay: 0.2s;">
+<div class="flex items-start mb-4">
+<div class="w-12 h-12 flex items-center justify-center rounded-full bg-secondary/10 text-secondary mr-4">
+<i class="ri-server-line ri-lg"></i>
+</div>
+<div>
+<h3 class="text-xl font-bold mb-1">تطوير الخلفية</h3>
+<p class="text-gray-600 text-sm">Node.js, PHP, Python</p>
+</div>
+</div>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between mb-1">
+<span class="text-sm font-medium">Node.js</span>
+<span class="text-sm text-gray-500">88%</span>
+</div>
+<div class="w-full bg-gray-200 rounded-full h-2">
+<div class="bg-secondary rounded-full h-2" style="width: 88%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<span class="text-sm font-medium">PHP/Laravel</span>
+<span class="text-sm text-gray-500">80%</span>
+</div>
+<div class="w-full bg-gray-200 rounded-full h-2">
+<div class="bg-secondary rounded-full h-2" style="width: 80%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<span class="text-sm font-medium">Python/Django</span>
+<span class="text-sm text-gray-500">75%</span>
+</div>
+<div class="w-full bg-gray-200 rounded-full h-2">
+<div class="bg-secondary rounded-full h-2" style="width: 75%"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-lg p-6 transform hover:-translate-y-2 transition-all duration-300 animate-on-scroll" style="animation-delay: 0.4s;">
+<div class="flex items-start mb-4">
+<div class="w-12 h-12 flex items-center justify-center rounded-full bg-green-100 text-green-600 mr-4">
+<i class="ri-database-2-line ri-lg"></i>
+</div>
+<div>
+<h3 class="text-xl font-bold mb-1">قواعد البيانات</h3>
+<p class="text-gray-600 text-sm">SQL, MongoDB, Firebase</p>
+</div>
+</div>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between mb-1">
+<span class="text-sm font-medium">MySQL</span>
+<span class="text-sm text-gray-500">92%</span>
+</div>
+<div class="w-full bg-gray-200 rounded-full h-2">
+<div class="bg-green-500 rounded-full h-2" style="width: 92%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<span class="text-sm font-medium">MongoDB</span>
+<span class="text-sm text-gray-500">85%</span>
+</div>
+<div class="w-full bg-gray-200 rounded-full h-2">
+<div class="bg-green-500 rounded-full h-2" style="width: 85%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<span class="text-sm font-medium">Firebase</span>
+<span class="text-sm text-gray-500">80%</span>
+</div>
+<div class="w-full bg-gray-200 rounded-full h-2">
+<div class="bg-green-500 rounded-full h-2" style="width: 80%"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-lg p-6 transform hover:-translate-y-2 transition-all duration-300 animate-on-scroll" style="animation-delay: 0.6s;">
+<div class="flex items-start mb-4">
+<div class="w-12 h-12 flex items-center justify-center rounded-full bg-amber-100 text-amber-600 mr-4">
+<i class="ri-smartphone-line ri-lg"></i>
+</div>
+<div>
+<h3 class="text-xl font-bold mb-1">تطوير تطبيقات الموبايل</h3>
+<p class="text-gray-600 text-sm">React Native, Flutter</p>
+</div>
+</div>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between mb-1">
+<span class="text-sm font-medium">React Native</span>
+<span class="text-sm text-gray-500">85%</span>
+</div>
+<div class="w-full bg-gray-200 rounded-full h-2">
+<div class="bg-amber-500 rounded-full h-2" style="width: 85%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<span class="text-sm font-medium">Flutter</span>
+<span class="text-sm text-gray-500">70%</span>
+</div>
+<div class="w-full bg-gray-200 rounded-full h-2">
+<div class="bg-amber-500 rounded-full h-2" style="width: 70%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<span class="text-sm font-medium">iOS/Android</span>
+<span class="text-sm text-gray-500">65%</span>
+</div>
+<div class="w-full bg-gray-200 rounded-full h-2">
+<div class="bg-amber-500 rounded-full h-2" style="width: 65%"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-lg p-6 transform hover:-translate-y-2 transition-all duration-300 animate-on-scroll" style="animation-delay: 0.8s;">
+<div class="flex items-start mb-4">
+<div class="w-12 h-12 flex items-center justify-center rounded-full bg-red-100 text-red-600 mr-4">
+<i class="ri-tools-fill ri-lg"></i>
+</div>
+<div>
+<h3 class="text-xl font-bold mb-1">أدوات التطوير</h3>
+<p class="text-gray-600 text-sm">Git, Docker, CI/CD</p>
+</div>
+</div>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between mb-1">
+<span class="text-sm font-medium">Git/GitHub</span>
+<span class="text-sm text-gray-500">95%</span>
+</div>
+<div class="w-full bg-gray-200 rounded-full h-2">
+<div class="bg-red-500 rounded-full h-2" style="width: 95%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<span class="text-sm font-medium">Docker</span>
+<span class="text-sm text-gray-500">80%</span>
+</div>
+<div class="w-full bg-gray-200 rounded-full h-2">
+<div class="bg-red-500 rounded-full h-2" style="width: 80%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<span class="text-sm font-medium">CI/CD</span>
+<span class="text-sm text-gray-500">75%</span>
+</div>
+<div class="w-full bg-gray-200 rounded-full h-2">
+<div class="bg-red-500 rounded-full h-2" style="width: 75%"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-lg p-6 transform hover:-translate-y-2 transition-all duration-300 animate-on-scroll" style="animation-delay: 1s;">
+<div class="flex items-start mb-4">
+<div class="w-12 h-12 flex items-center justify-center rounded-full bg-purple-100 text-purple-600 mr-4">
+<i class="ri-palette-line ri-lg"></i>
+</div>
+<div>
+<h3 class="text-xl font-bold mb-1">تصميم واجهات المستخدم</h3>
+<p class="text-gray-600 text-sm">Figma, Adobe XD</p>
+</div>
+</div>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between mb-1">
+<span class="text-sm font-medium">Figma</span>
+<span class="text-sm text-gray-500">85%</span>
+</div>
+<div class="w-full bg-gray-200 rounded-full h-2">
+<div class="bg-purple-500 rounded-full h-2" style="width: 85%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<span class="text-sm font-medium">Adobe XD</span>
+<span class="text-sm text-gray-500">80%</span>
+</div>
+<div class="w-full bg-gray-200 rounded-full h-2">
+<div class="bg-purple-500 rounded-full h-2" style="width: 80%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<span class="text-sm font-medium">Sketch</span>
+<span class="text-sm text-gray-500">70%</span>
+</div>
+<div class="w-full bg-gray-200 rounded-full h-2">
+<div class="bg-purple-500 rounded-full h-2" style="width: 70%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-16 animate-on-scroll">
+<div id="skills-chart" class="w-full h-80"></div>
+</div>
+</div>
+</section>
+
+<!-- قسم المشاريع -->
+<section id="projects" class="py-20">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16 animate-on-scroll">
+<h2 class="text-3xl md:text-4xl font-bold mb-4">أحدث مشاريعي</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">مجموعة مختارة من المشاريع التي قمت بتطويرها والتي تعكس مهاراتي وخبراتي في مجال البرمجة</p>
+</div>
+<div class="mb-8 flex justify-center animate-on-scroll">
+<div class="inline-flex bg-gray-100 p-1 rounded-full">
+<button class="project-filter px-4 py-2 rounded-full bg-primary text-white" data-filter="all">الكل</button>
+<button class="project-filter px-4 py-2 rounded-full" data-filter="web">تطبيقات الويب</button>
+<button class="project-filter px-4 py-2 rounded-full" data-filter="mobile">تطبيقات الموبايل</button>
+<button class="project-filter px-4 py-2 rounded-full" data-filter="ui">واجهات المستخدم</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
+<div class="project-card rounded-lg overflow-hidden shadow-lg group relative animate-on-scroll" data-category="web">
+<img src="https://readdy.ai/api/search-image?query=modern%20e-commerce%20website%20dashboard%20interface%2C%20professional%20design%2C%20clean%20layout%2C%20product%20management%20section%2C%20analytics%20charts%2C%20user-friendly%20interface%2C%20high%20quality%2C%20detailed&width=600&height=400&seq=proj1&orientation=landscape" alt="منصة تسوق إلكتروني" class="w-full h-64 object-cover object-top transition-transform duration-500 group-hover:scale-110">
+<div class="project-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6">
+<h3 class="text-xl font-bold text-white mb-2">منصة تسوق إلكتروني</h3>
+<p class="text-white/80 mb-4">منصة متكاملة للتجارة الإلكترونية مع نظام إدارة متطور ولوحة تحكم شاملة</p>
+<div class="flex space-x-2 space-x-reverse">
+<span class="px-2 py-1 bg-primary/20 text-primary text-xs rounded-full">React</span>
+<span class="px-2 py-1 bg-primary/20 text-primary text-xs rounded-full">Node.js</span>
+<span class="px-2 py-1 bg-primary/20 text-primary text-xs rounded-full">MongoDB</span>
+</div>
+<div class="mt-4 flex space-x-3 space-x-reverse">
+<a href="#" class="px-4 py-2 bg-white text-primary rounded-button text-sm font-medium hover:bg-opacity-90 transition-all duration-300 whitespace-nowrap">عرض المشروع</a>
+<a href="#" class="px-4 py-2 bg-transparent border border-white text-white rounded-button text-sm font-medium hover:bg-white/10 transition-all duration-300 whitespace-nowrap">المصدر</a>
+</div>
+</div>
+</div>
+<div class="project-card rounded-lg overflow-hidden shadow-lg group relative animate-on-scroll" data-category="mobile" style="animation-delay: 0.2s;">
+<img src="https://readdy.ai/api/search-image?query=mobile%20app%20fitness%20tracker%20interface%2C%20workout%20tracking%20screens%2C%20health%20monitoring%20dashboard%2C%20clean%20modern%20design%2C%20professional%20UI%2C%20high%20quality%2C%20detailed&width=600&height=400&seq=proj2&orientation=landscape" alt="تطبيق لياقة بدنية" class="w-full h-64 object-cover object-top transition-transform duration-500 group-hover:scale-110">
+<div class="project-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6">
+<h3 class="text-xl font-bold text-white mb-2">تطبيق لياقة بدنية</h3>
+<p class="text-white/80 mb-4">تطبيق موبايل لتتبع التمارين الرياضية وقياس مستوى اللياقة البدنية</p>
+<div class="flex space-x-2 space-x-reverse">
+<span class="px-2 py-1 bg-secondary/20 text-secondary text-xs rounded-full">React Native</span>
+<span class="px-2 py-1 bg-secondary/20 text-secondary text-xs rounded-full">Firebase</span>
+<span class="px-2 py-1 bg-secondary/20 text-secondary text-xs rounded-full">Redux</span>
+</div>
+<div class="mt-4 flex space-x-3 space-x-reverse">
+<a href="#" class="px-4 py-2 bg-white text-secondary rounded-button text-sm font-medium hover:bg-opacity-90 transition-all duration-300 whitespace-nowrap">عرض المشروع</a>
+<a href="#" class="px-4 py-2 bg-transparent border border-white text-white rounded-button text-sm font-medium hover:bg-white/10 transition-all duration-300 whitespace-nowrap">المصدر</a>
+</div>
+</div>
+</div>
+<div class="project-card rounded-lg overflow-hidden shadow-lg group relative animate-on-scroll" data-category="ui" style="animation-delay: 0.4s;">
+<img src="https://readdy.ai/api/search-image?query=banking%20dashboard%20UI%20design%2C%20financial%20app%20interface%2C%20transaction%20history%2C%20account%20management%2C%20modern%20clean%20design%2C%20professional%20fintech%20interface%2C%20high%20quality%2C%20detailed&width=600&height=400&seq=proj3&orientation=landscape" alt="واجهة تطبيق بنكي" class="w-full h-64 object-cover object-top transition-transform duration-500 group-hover:scale-110">
+<div class="project-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6">
+<h3 class="text-xl font-bold text-white mb-2">واجهة تطبيق بنكي</h3>
+<p class="text-white/80 mb-4">تصميم واجهة مستخدم لتطبيق بنكي متكامل مع لوحة تحكم للعمليات المالية</p>
+<div class="flex space-x-2 space-x-reverse">
+<span class="px-2 py-1 bg-green-100 text-green-600 text-xs rounded-full">Figma</span>
+<span class="px-2 py-1 bg-green-100 text-green-600 text-xs rounded-full">UI/UX</span>
+<span class="px-2 py-1 bg-green-100 text-green-600 text-xs rounded-full">Prototype</span>
+</div>
+<div class="mt-4 flex space-x-3 space-x-reverse">
+<a href="#" class="px-4 py-2 bg-white text-green-600 rounded-button text-sm font-medium hover:bg-opacity-90 transition-all duration-300 whitespace-nowrap">عرض المشروع</a>
+<a href="#" class="px-4 py-2 bg-transparent border border-white text-white rounded-button text-sm font-medium hover:bg-white/10 transition-all duration-300 whitespace-nowrap">المصدر</a>
+</div>
+</div>
+</div>
+<div class="project-card rounded-lg overflow-hidden shadow-lg group relative animate-on-scroll" data-category="web" style="animation-delay: 0.6s;">
+<img src="https://readdy.ai/api/search-image?query=learning%20management%20system%20interface%2C%20online%20courses%20dashboard%2C%20educational%20platform%2C%20student%20progress%20tracking%2C%20modern%20clean%20design%2C%20professional%20e-learning%20interface%2C%20high%20quality%2C%20detailed&width=600&height=400&seq=proj4&orientation=landscape" alt="منصة تعليمية" class="w-full h-64 object-cover object-top transition-transform duration-500 group-hover:scale-110">
+<div class="project-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6">
+<h3 class="text-xl font-bold text-white mb-2">منصة تعليمية</h3>
+<p class="text-white/80 mb-4">منصة تعليمية متكاملة لإدارة الدورات التدريبية ومتابعة تقدم الطلاب</p>
+<div class="flex space-x-2 space-x-reverse">
+<span class="px-2 py-1 bg-primary/20 text-primary text-xs rounded-full">Vue.js</span>
+<span class="px-2 py-1 bg-primary/20 text-primary text-xs rounded-full">Laravel</span>
+<span class="px-2 py-1 bg-primary/20 text-primary text-xs rounded-full">MySQL</span>
+</div>
+<div class="mt-4 flex space-x-3 space-x-reverse">
+<a href="#" class="px-4 py-2 bg-white text-primary rounded-button text-sm font-medium hover:bg-opacity-90 transition-all duration-300 whitespace-nowrap">عرض المشروع</a>
+<a href="#" class="px-4 py-2 bg-transparent border border-white text-white rounded-button text-sm font-medium hover:bg-white/10 transition-all duration-300 whitespace-nowrap">المصدر</a>
+</div>
+</div>
+</div>
+<div class="project-card rounded-lg overflow-hidden shadow-lg group relative animate-on-scroll" data-category="mobile" style="animation-delay: 0.8s;">
+<img src="https://readdy.ai/api/search-image?query=food%20delivery%20app%20interface%2C%20restaurant%20listing%2C%20order%20tracking%2C%20meal%20selection%20screens%2C%20modern%20clean%20design%2C%20professional%20mobile%20app%20interface%2C%20high%20quality%2C%20detailed&width=600&height=400&seq=proj5&orientation=landscape" alt="تطبيق توصيل طعام" class="w-full h-64 object-cover object-top transition-transform duration-500 group-hover:scale-110">
+<div class="project-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6">
+<h3 class="text-xl font-bold text-white mb-2">تطبيق توصيل طعام</h3>
+<p class="text-white/80 mb-4">تطبيق موبايل لطلب وتوصيل الطعام مع نظام تتبع الطلبات في الوقت الفعلي</p>
+<div class="flex space-x-2 space-x-reverse">
+<span class="px-2 py-1 bg-secondary/20 text-secondary text-xs rounded-full">Flutter</span>
+<span class="px-2 py-1 bg-secondary/20 text-secondary text-xs rounded-full">Firebase</span>
+<span class="px-2 py-1 bg-secondary/20 text-secondary text-xs rounded-full">Google Maps</span>
+</div>
+<div class="mt-4 flex space-x-3 space-x-reverse">
+<a href="#" class="px-4 py-2 bg-white text-secondary rounded-button text-sm font-medium hover:bg-opacity-90 transition-all duration-300 whitespace-nowrap">عرض المشروع</a>
+<a href="#" class="px-4 py-2 bg-transparent border border-white text-white rounded-button text-sm font-medium hover:bg-white/10 transition-all duration-300 whitespace-nowrap">المصدر</a>
+</div>
+</div>
+</div>
+<div class="project-card rounded-lg overflow-hidden shadow-lg group relative animate-on-scroll" data-category="ui" style="animation-delay: 1s;">
+<img src="https://readdy.ai/api/search-image?query=social%20media%20dashboard%20interface%2C%20analytics%20platform%2C%20user%20engagement%20metrics%2C%20content%20management%2C%20modern%20clean%20design%2C%20professional%20analytics%20interface%2C%20high%20quality%2C%20detailed&width=600&height=400&seq=proj6&orientation=landscape" alt="لوحة تحكم وسائل التواصل" class="w-full h-64 object-cover object-top transition-transform duration-500 group-hover:scale-110">
+<div class="project-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6">
+<h3 class="text-xl font-bold text-white mb-2">لوحة تحكم وسائل التواصل</h3>
+<p class="text-white/80 mb-4">لوحة تحكم لإدارة وتحليل حسابات وسائل التواصل الاجتماعي</p>
+<div class="flex space-x-2 space-x-reverse">
+<span class="px-2 py-1 bg-amber-100 text-amber-600 text-xs rounded-full">Adobe XD</span>
+<span class="px-2 py-1 bg-amber-100 text-amber-600 text-xs rounded-full">UI/UX</span>
+<span class="px-2 py-1 bg-amber-100 text-amber-600 text-xs rounded-full">Dashboard</span>
+</div>
+<div class="mt-4 flex space-x-3 space-x-reverse">
+<a href="#" class="px-4 py-2 bg-white text-amber-600 rounded-button text-sm font-medium hover:bg-opacity-90 transition-all duration-300 whitespace-nowrap">عرض المشروع</a>
+<a href="#" class="px-4 py-2 bg-transparent border border-white text-white rounded-button text-sm font-medium hover:bg-white/10 transition-all duration-300 whitespace-nowrap">المصدر</a>
+</div>
+</div>
+</div>
+</div>
+<div class="text-center mt-12 animate-on-scroll">
+<a href="#" class="inline-block px-8 py-4 bg-primary text-white rounded-button font-medium hover:bg-opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl whitespace-nowrap">عرض جميع المشاريع</a>
+</div>
+</div>
+</section>
+
+<!-- قسم الخبرات -->
+<section id="experience" class="py-20 bg-gray-50">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16 animate-on-scroll">
+<h2 class="text-3xl md:text-4xl font-bold mb-4">خبراتي المهنية</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">مسيرتي المهنية في مجال تطوير البرمجيات والمواقع الإلكترونية</p>
+</div>
+<div class="relative">
+<div class="timeline-dot absolute top-0 bottom-0 left-1/2 transform -translate-x-1/2"></div>
+<div class="timeline-item flex flex-col md:flex-row md:justify-between items-center md:items-start mb-12 animate-on-scroll">
+<div class="md:w-5/12 mb-6 md:mb-0 md:text-left order-2 md:order-1">
+<div class="bg-white p-6 rounded-lg shadow-lg">
+<h3 class="text-xl font-bold mb-2">مطور ويب أول</h3>
+<h4 class="text-primary font-medium mb-4">شركة تقنية المستقبل</h4>
+<p class="text-gray-600 mb-4">قيادة فريق تطوير الويب وإدارة المشاريع الكبرى للشركة. تطوير تطبيقات الويب المتقدمة باستخدام أحدث التقنيات.</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded-full">React</span>
+<span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded-full">Node.js</span>
+<span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded-full">AWS</span>
+<span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded-full">Project Management</span>
+</div>
+</div>
+</div>
+<div class="md:w-2/12 flex justify-center items-center order-1 md:order-2">
+<div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center relative z-10">
+<i class="ri-briefcase-4-line"></i>
+</div>
+</div>
+<div class="md:w-5/12 text-center md:text-right order-3">
+<div class="font-bold text-lg text-gray-900">2023 - الحالي</div>
+<div class="text-gray-500">الرياض، المملكة العربية السعودية</div>
+</div>
+</div>
+<div class="timeline-item flex flex-col md:flex-row md:justify-between items-center md:items-start mb-12 animate-on-scroll" style="animation-delay: 0.3s;">
+<div class="md:w-5/12 text-center md:text-left order-2 md:order-1">
+<div class="font-bold text-lg text-gray-900">2020 - 2023</div>
+<div class="text-gray-500">دبي، الإمارات العربية المتحدة</div>
+</div>
+<div class="md:w-2/12 flex justify-center items-center order-1 md:order-2">
+<div class="w-10 h-10 rounded-full bg-secondary text-white flex items-center justify-center relative z-10">
+<i class="ri-code-box-line"></i>
+</div>
+</div>
+<div class="md:w-5/12 mb-6 md:mb-0 order-3">
+<div class="bg-white p-6 rounded-lg shadow-lg">
+<h3 class="text-xl font-bold mb-2">مطور واجهات أمامية</h3>
+<h4 class="text-secondary font-medium mb-4">شركة الإبداع الرقمي</h4>
+<p class="text-gray-600 mb-4">تطوير واجهات المستخدم للتطبيقات والمواقع الإلكترونية. العمل على مشاريع كبرى لعملاء في قطاعات متنوعة.</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-secondary/10 text-secondary text-xs rounded-full">JavaScript</span>
+<span class="px-2 py-1 bg-secondary/10 text-secondary text-xs rounded-full">Vue.js</span>
+<span class="px-2 py-1 bg-secondary/10 text-secondary text-xs rounded-full">CSS/SASS</span>
+<span class="px-2 py-1 bg-secondary/10 text-secondary text-xs rounded-full">Responsive Design</span>
+</div>
+</div>
+</div>
+</div>
+<div class="timeline-item flex flex-col md:flex-row md:justify-between items-center md:items-start mb-12 animate-on-scroll" style="animation-delay: 0.6s;">
+<div class="md:w-5/12 mb-6 md:mb-0 md:text-left order-2 md:order-1">
+<div class="bg-white p-6 rounded-lg shadow-lg">
+<h3 class="text-xl font-bold mb-2">مطور تطبيقات موبايل</h3>
+<h4 class="text-green-600 font-medium mb-4">شركة الحلول الذكية</h4>
+<p class="text-gray-600 mb-4">تطوير تطبيقات الهواتف الذكية لنظامي iOS و Android. تصميم وتنفيذ واجهات المستخدم وتكامل واجهات برمجة التطبيقات.</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-green-100 text-green-600 text-xs rounded-full">React Native</span>
+<span class="px-2 py-1 bg-green-100 text-green-600 text-xs rounded-full">Firebase</span>
+<span class="px-2 py-1 bg-green-100 text-green-600 text-xs rounded-full">REST APIs</span>
+<span class="px-2 py-1 bg-green-100 text-green-600 text-xs rounded-full">Mobile UI/UX</span>
+</div>
+</div>
+</div>
+<div class="md:w-2/12 flex justify-center items-center order-1 md:order-2">
+<div class="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center relative z-10">
+<i class="ri-smartphone-line"></i>
+</div>
+</div>
+<div class="md:w-5/12 text-center md:text-right order-3">
+<div class="font-bold text-lg text-gray-900">2018 - 2020</div>
+<div class="text-gray-500">القاهرة، مصر</div>
+</div>
+</div>
+<div class="timeline-item flex flex-col md:flex-row md:justify-between items-center md:items-start animate-on-scroll" style="animation-delay: 0.9s;">
+<div class="md:w-5/12 text-center md:text-left order-2 md:order-1">
+<div class="font-bold text-lg text-gray-900">2016 - 2018</div>
+<div class="text-gray-500">عمّان، الأردن</div>
+</div>
+<div class="md:w-2/12 flex justify-center items-center order-1 md:order-2">
+<div class="w-10 h-10 rounded-full bg-amber-500 text-white flex items-center justify-center relative z-10">
+<i class="ri-graduation-cap-line"></i>
+</div>
+</div>
+<div class="md:w-5/12 mb-6 md:mb-0 order-3">
+<div class="bg-white p-6 rounded-lg shadow-lg">
+<h3 class="text-xl font-bold mb-2">مطور ويب مبتدئ</h3>
+<h4 class="text-amber-600 font-medium mb-4">شركة الإبداع التقني</h4>
+<p class="text-gray-600 mb-4">بداية المسيرة المهنية في تطوير الويب. العمل على مشاريع صغيرة ومتوسطة الحجم واكتساب الخبرة في مختلف تقنيات الويب.</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-amber-100 text-amber-600 text-xs rounded-full">HTML/CSS</span>
+<span class="px-2 py-1 bg-amber-100 text-amber-600 text-xs rounded-full">JavaScript</span>
+<span class="px-2 py-1 bg-amber-100 text-amber-600 text-xs rounded-full">PHP</span>
+<span class="px-2 py-1 bg-amber-100 text-amber-600 text-xs rounded-full">WordPress</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-16 text-center animate-on-scroll">
+<button id="download-cv" class="inline-block px-8 py-4 bg-primary text-white rounded-button font-medium hover:bg-opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl whitespace-nowrap">تحميل السيرة الذاتية <i class="ri-download-2-line mr-2"></i></button>
+</div>
+</div>
+</section>
+
+<!-- قسم التواصل -->
+<section id="contact" class="py-20">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16 animate-on-scroll">
+<h2 class="text-3xl md:text-4xl font-bold mb-4">تواصل معي</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">هل لديك مشروع تريد مناقشته؟ أو استفسار عن خدماتي؟ لا تتردد في التواصل معي</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+<div class="animate-on-scroll">
+<form id="contact-form" class="bg-white rounded-lg shadow-lg p-8">
+<div class="mb-6">
+<label for="name" class="block text-gray-700 font-medium mb-2">الاسم الكامل</label>
+<input type="text" id="name" name="name" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300" placeholder="أدخل اسمك الكامل" required>
+</div>
+<div class="mb-6">
+<label for="email" class="block text-gray-700 font-medium mb-2">البريد الإلكتروني</label>
+<input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300" placeholder="أدخل بريدك الإلكتروني" required>
+</div>
+<div class="mb-6">
+<label for="subject" class="block text-gray-700 font-medium mb-2">الموضوع</label>
+<input type="text" id="subject" name="subject" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300" placeholder="موضوع الرسالة" required>
+</div>
+<div class="mb-6">
+<label for="message" class="block text-gray-700 font-medium mb-2">الرسالة</label>
+<textarea id="message" name="message" rows="5" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300" placeholder="اكتب رسالتك هنا..." required></textarea>
+</div>
+<button type="submit" class="w-full bg-primary text-white py-3 px-6 rounded-button font-medium hover:bg-opacity-90 transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap">إرسال الرسالة <i class="ri-send-plane-fill mr-2"></i></button>
+<div id="form-message" class="mt-4 text-center hidden"></div>
+</form>
+</div>
+<div class="animate-on-scroll" style="animation-delay: 0.3s;">
+<div class="bg-white rounded-lg shadow-lg p-8 h-full">
+<h3 class="text-2xl font-bold mb-6">معلومات التواصل</h3>
+<div class="space-y-6">
+<div class="flex items-start">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-4">
+<i class="ri-map-pin-line ri-lg"></i>
+</div>
+<div>
+<h4 class="font-medium text-gray-900 mb-1">العنوان</h4>
+<p class="text-gray-600">شارع الملك فهد، الرياض، المملكة العربية السعودية</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-4">
+<i class="ri-mail-line ri-lg"></i>
+</div>
+<div>
+<h4 class="font-medium text-gray-900 mb-1">البريد الإلكتروني</h4>
+<p class="text-gray-600">mahmoud@example.com</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-4">
+<i class="ri-phone-line ri-lg"></i>
+</div>
+<div>
+<h4 class="font-medium text-gray-900 mb-1">رقم الهاتف</h4>
+<p class="text-gray-600">+966 50 123 4567</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-4">
+<i class="ri-time-line ri-lg"></i>
+</div>
+<div>
+<h4 class="font-medium text-gray-900 mb-1">ساعات العمل</h4>
+<p class="text-gray-600">الأحد - الخميس: 9:00 صباحاً - 5:00 مساءً</p>
+</div>
+</div>
+</div>
+<div class="mt-8">
+<h4 class="font-medium text-gray-900 mb-4">تابعني على وسائل التواصل</h4>
+<div class="flex space-x-4 space-x-reverse">
+<a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-all duration-300">
+<i class="ri-github-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-all duration-300">
+<i class="ri-linkedin-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-all duration-300">
+<i class="ri-twitter-x-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-all duration-300">
+<i class="ri-instagram-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-all duration-300">
+<i class="ri-dribbble-fill"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-16 animate-on-scroll">
+<div class="bg-white rounded-lg shadow-lg overflow-hidden h-80">
+<div class="h-full w-full" style="background-image: url('https://public.readdy.ai/gen_page/map_placeholder_1280x720.png'); background-size: cover; background-position: center;"></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- التذييل -->
+<footer class="bg-gray-900 text-white py-12">
+<div class="container mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<div>
+<div class="font-['Pacifico'] text-3xl text-white mb-4">مبرمج</div>
+<p class="text-gray-400 mb-6">مطور ويب متكامل متخصص في بناء تطبيقات ويب وموبايل عالية الجودة باستخدام أحدث التقنيات.</p>
+<div class="flex space-x-4 space-x-reverse">
+<a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white transition-all duration-300">
+<i class="ri-github-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white transition-all duration-300">
+<i class="ri-linkedin-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white transition-all duration-300">
+<i class="ri-twitter-x-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white transition-all duration-300">
+<i class="ri-dribbble-fill"></i>
+</a>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-bold mb-4">روابط سريعة</h3>
+<ul class="space-y-3">
+<li><a href="#home" class="text-gray-400 hover:text-white transition-colors duration-300">الرئيسية</a></li>
+<li><a href="#about" class="text-gray-400 hover:text-white transition-colors duration-300">ماذا عنا</a></li>
+<li><a href="#skills" class="text-gray-400 hover:text-white transition-colors duration-300">المهارات</a></li>
+<li><a href="#projects" class="text-gray-400 hover:text-white transition-colors duration-300">المشاريع</a></li>
+<li><a href="#experience" class="text-gray-400 hover:text-white transition-colors duration-300">الخبرات</a></li>
+<li><a href="#contact" class="text-gray-400 hover:text-white transition-colors duration-300">التواصل</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-bold mb-4">خدماتي</h3>
+<ul class="space-y-3">
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">تطوير المواقع الإلكترونية</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">تطوير تطبيقات الموبايل</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">تصميم واجهات المستخدم</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">استشارات تقنية</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">تحسين أداء المواقع</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-bold mb-4">النشرة البريدية</h3>
+<p class="text-gray-400 mb-4">اشترك في النشرة البريدية للحصول على آخر الأخبار والتحديثات</p>
+<form>
+<div class="flex">
+<input type="email" placeholder="بريدك الإلكتروني" class="px-4 py-2 w-full rounded-r-button bg-gray-800 border border-gray-700 text-white focus:outline-none focus:border-primary">
+<button type="submit" class="bg-primary text-white px-4 py-2 rounded-l-button whitespace-nowrap hover:bg-opacity-90 transition-all duration-300">اشتراك</button>
+</div>
+</form>
+</div>
+</div>
+<div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+<p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 محمود محمد. جميع الحقوق محفوظة.</p>
+<div class="flex space-x-4 space-x-reverse">
+<a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">سياسة الخصوصية</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">الشروط والأحكام</a>
+</div>
+</div>
+</div>
+</footer>
+
+<!-- زر العودة للأعلى -->
+<button id="back-to-top" class="fixed bottom-6 left-6 w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-opacity-90">
+<i class="ri-arrow-up-line ri-lg"></i>
+</button>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Navbar and mobile menu script
+    const navbar = document.getElementById('navbar');
+    const backToTop = document.getElementById('back-to-top');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 100) {
+            navbar.classList.add('shadow-md');
+            backToTop.classList.remove('opacity-0', 'invisible');
+            backToTop.classList.add('opacity-100', 'visible');
+        } else {
+            navbar.classList.remove('shadow-md');
+            backToTop.classList.add('opacity-0', 'invisible');
+            backToTop.classList.remove('opacity-100', 'visible');
+        }
+    });
+    
+    backToTop.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuToggle.addEventListener('click', function() {
+        if (mobileMenu.classList.contains('opacity-0')) {
+            mobileMenu.classList.remove('opacity-0', '-translate-y-full', 'pointer-events-none');
+            mobileMenu.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+            menuToggle.innerHTML = '<i class="ri-close-line ri-lg"></i>';
+        } else {
+            mobileMenu.classList.add('opacity-0', '-translate-y-full', 'pointer-events-none');
+            mobileMenu.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+            menuToggle.innerHTML = '<i class="ri-menu-line ri-lg"></i>';
+        }
+    });
+    
+    // Close mobile menu when clicking on a link
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            mobileMenu.classList.add('opacity-0', '-translate-y-full', 'pointer-events-none');
+            mobileMenu.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+            menuToggle.innerHTML = '<i class="ri-menu-line ri-lg"></i>';
+        });
+    });
+    
+    // Typing effect script
+    const typingText = document.getElementById('typing-text');
+    const texts = ['مطور ويب متكامل', 'مصمم واجهات مستخدم', 'مطور تطبيقات موبايل', 'مستشار تقني'];
+    let textIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 100;
+    
+    function type() {
+        const currentText = texts[textIndex];
+        if (isDeleting) {
+            typingText.textContent = currentText.substring(0, charIndex - 1);
+            charIndex--;
+            typingSpeed = 50;
+        } else {
+            typingText.textContent = currentText.substring(0, charIndex + 1);
+            charIndex++;
+            typingSpeed = 100;
+        }
+        
+        if (!isDeleting && charIndex === currentText.length) {
+            isDeleting = true;
+            typingSpeed = 1000; // Pause at end
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            textIndex = (textIndex + 1) % texts.length;
+            typingSpeed = 500; // Pause before typing next
+        }
+        
+        setTimeout(type, typingSpeed);
+    }
+    
+    setTimeout(type, 1000);
+    
+    // Animation on scroll script
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    function checkVisibility() {
+        animatedElements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const elementVisible = 150;
+            if (elementTop < window.innerHeight - elementVisible) {
+                element.classList.add('visible');
+            }
+        });
+    }
+    
+    window.addEventListener('scroll', checkVisibility);
+    checkVisibility(); // Check on page load
+    
+    // Project filter script
+    const filterButtons = document.querySelectorAll('.project-filter');
+    const projectCards = document.querySelectorAll('.project-card');
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const filter = this.getAttribute('data-filter');
+            // Update active button
+            filterButtons.forEach(btn => {
+                btn.classList.remove('bg-primary', 'text-white');
+            });
+            this.classList.add('bg-primary', 'text-white');
+            // Filter projects
+            projectCards.forEach(card => {
+                if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+    
+    // Skills chart script
+    const skillsChart = document.getElementById('skills-chart');
+    if (skillsChart) {
+        const chart = echarts.init(skillsChart);
+        const option = {
+            animation: false,
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                },
+                backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                borderColor: '#eee',
+                borderWidth: 1,
+                textStyle: {
+                    color: '#1f2937'
+                }
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                top: '3%',
+                containLabel: true
+            },
+            xAxis: {
+                type: 'category',
+                data: ['HTML/CSS', 'JavaScript', 'React', 'Node.js', 'PHP', 'Python', 'Mobile', 'UI/UX'],
+                axisLine: {
+                    lineStyle: {
+                        color: '#ddd'
+                    }
+                },
+                axisLabel: {
+                    color: '#1f2937'
+                }
+            },
+            yAxis: {
+                type: 'value',
+                max: 100,
+                axisLine: {
+                    show: false
+                },
+                axisLabel: {
+                    color: '#1f2937',
+                    formatter: '{value}%'
+                },
+                splitLine: {
+                    lineStyle: {
+                        color: '#eee'
+                    }
+                }
+            },
+            series: [
+                {
+                    name: 'مستوى المهارة',
+                    type: 'bar',
+                    data: [95, 90, 85, 88, 80, 75, 85, 82],
+                    itemStyle: {
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                            { offset: 0, color: 'rgba(87, 181, 231, 1)' },
+                            { offset: 1, color: 'rgba(87, 181, 231, 0.7)' }
+                        ]),
+                        borderRadius: 8
+                    },
+                    emphasis: {
+                        itemStyle: {
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                                { offset: 0, color: 'rgba(87, 181, 231, 1)' },
+                                { offset: 1, color: 'rgba(87, 181, 231, 0.8)' }
+                            ])
+                        }
+                    }
+                }
+            ]
+        };
+        chart.setOption(option);
+        window.addEventListener('resize', function() {
+            chart.resize();
+        });
+    }
+    
+    // Contact form script for Telegram
+    const contactForm = document.getElementById('contact-form');
+    const formMessage = document.getElementById('form-message');
+    if (contactForm) {
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const formData = new FormData(contactForm);
+            const data = Object.fromEntries(formData.entries());
+            
+            // إظهار رسالة تحميل
+            formMessage.textContent = 'جاري إرسال الرسالة...';
+            formMessage.classList.remove('hidden', 'text-red-500', 'text-green-500');
+            formMessage.classList.add('text-blue-500');
+            formMessage.classList.remove('hidden');
+            
+            try {
+                // إرسال البيانات إلى بوت تيليجرام
+                const messageText = `
+                رسالة جديدة من الموقع:
+                الاسم: ${data.name}
+                البريد الإلكتروني: ${data.email}
+                الموضوع: ${data.subject}
+                الرسالة: ${data.message}
+                `;
+                
+                // استبدل هذه القيم بمعلومات بوتك الخاص
+                const telegramBotToken = 'YOUR_TELEGRAM_BOT_TOKEN';
+                const chatId = 'YOUR_CHAT_ID';
+                
+                const response = await fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: chatId,
+                        text: messageText,
+                    }),
+                });
+                
+                if (response.ok) {
+                    formMessage.textContent = 'تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.';
+                    formMessage.classList.remove('text-blue-500', 'text-red-500');
+                    formMessage.classList.add('text-green-500');
+                    contactForm.reset();
+                } else {
+                    throw new Error('فشل في إرسال الرسالة');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                formMessage.textContent = 'حدث خطأ أثناء إرسال الرسالة. يرجى المحاولة مرة أخرى لاحقاً.';
+                formMessage.classList.remove('text-blue-500', 'text-green-500');
+                formMessage.classList.add('text-red-500');
+            }
+        });
+    }
+    
+    // Download CV script
+    const downloadBtn = document.getElementById('download-cv');
+    if (downloadBtn) {
+        downloadBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            // إنشاء محتوى ملف السيرة الذاتية
+            const cvContent = `
+السيرة الذاتية - محمود محمد
+=========================
+
+معلومات شخصية:
+----------------
+الاسم: محمود محمد
+التخصص: مبرمج ويب متكامل
+البريد الإلكتروني: mahmoud@example.com
+رقم الهاتف: +966501234567
+
+المهارات التقنية:
+-----------------
+- تطوير الويب (HTML, CSS, JavaScript)
+- أطر العمل (React, Vue.js, Laravel)
+- قواعد البيانات (MySQL, MongoDB)
+- تطوير تطبيقات الموبايل (React Native)
+- أدوات التطوير (Git, Docker)
+
+الخبرات المهنية:
+-----------------
+2023 - الحالي: مطور ويب أول - شركة تقنية المستقبل
+2020 - 2023: مطور واجهات أمامية - شركة الإبداع الرقمي
+2018 - 2020: مطور تطبيقات موبايل - شركة الحلول الذكية
+
+المشاريع البارزة:
+-----------------
+1. منصة تسوق إلكتروني (React, Node.js)
+2. تطبيق لياقة بدنية (React Native)
+3. لوحة تحكم وسائل التواصل (UI/UX Design)
+
+التعليم:
+--------
+بكالوريوس علوم الحاسوب - جامعة الملك سعود (2016)
+            `;
+            
+            // إنشاء ملف نصي للتنزيل
+            const blob = new Blob([cvContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'السيرة_الذاتية_محمود_محمد.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+    }
+});
+</script>
+</body>
+</html>
